@@ -10,16 +10,22 @@ formDados.addEventListener('submit', (evt) => {
 
     
     let nome = (form_num.get('nome'))
-    let altura = (form_num.get('altura'))
-    let peso = (form_num.get('peso'))
+    let altura = parseFloat(form_num.get('altura'))
+    let peso = parseFloat(form_num.get('peso'))
+
+    let imc = peso / parseFloat(altura*altura)
 
 
 
-if (vert1 === vert2 && vert2 === vert3) {
-    divResultado.innerHTML = (`Triângulo Equilátero`)
-}else if(vert1 === vert2 || vert1 === vert3 || vert2 === vert3) {
-    divResultado.innerHTML = (`Triângulo Isósceles`)
+if (imc<20) {
+    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se abaixo do peso`)
+}else if(imc>=20 && imc < 25) {
+    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e seu peso é normal`)
+}else if(imc>=20 && imc < 30) {
+    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e está com excesso de peso`)
+}else if(imc>=30 && imc < 35) {
+    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se com obesidade`)
 }else{
-    divResultado.innerHTML = (`Triângulo Escaleno`)
+    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se obesidade mórbida`)
 }
 })
