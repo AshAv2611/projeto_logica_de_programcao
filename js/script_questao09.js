@@ -13,19 +13,17 @@ formDados.addEventListener('submit', (evt) => {
     let valor = parseFloat(form_num.get('valor'))
     
 
-    let imc = peso / parseFloat(altura*altura)
+if (valor<10) {
+    novoValor = valor*1.7;
+}else if(valor >= 10 && valor < 30) {
+    novoValor = valor*1.5;
+   
+}else if(valor >= 30 && valor < 50) {
+    novoValor = valor*1.4;
 
-
-
-if (imc<20) {
-    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se abaixo do peso`)
-}else if(imc>=20 && imc < 25) {
-    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e seu peso é normal`)
-}else if(imc>=20 && imc < 30) {
-    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e está com excesso de peso`)
-}else if(imc>=30 && imc < 35) {
-    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se com obesidade`)
 }else{
-    divResultado.innerHTML = (`${nome} está com imc de: ${imc.toFixed(2).replace(".",",")} e encontra-se obesidade mórbida`)
+    novoValor = valor*1.3;
 }
 })
+
+divResultado.innerHTML = (`O ${produto} terá o valor de venda de R$ ${novoValor.toFixed(2).replace(".",",")}`)
